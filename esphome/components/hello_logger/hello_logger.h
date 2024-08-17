@@ -11,9 +11,13 @@
 namespace esphome {
 namespace hellologger{
 
+    class HelloLogger : public component{
+
     public:
         void setup() override;
         void loop() override;
-
+        void dump_config() override;
+    
+    }
 }  // namespace hellologger
 }  // namespace esphome
