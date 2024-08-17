@@ -7,7 +7,7 @@ HelloLogger = empty_component_ns.class_("HelloLogger", cg.Component)
 
 CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(): cv.declare_id(HelloLogger),
+        cv.GenerateID(): cv.declare_id(hellologger),
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
