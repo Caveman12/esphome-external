@@ -7,7 +7,7 @@ namespace hellologger{
     static const char *TAG = "hello_logger.component";
 
     void setup(){
-        ESP_LOGI(TAG, 'Hello Logger');
+        ESP_LOGD(TAG, 'Hello Logger');
     }
 
     void loop() {
