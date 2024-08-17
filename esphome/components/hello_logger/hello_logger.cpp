@@ -4,7 +4,7 @@
 namespace esphome {
 namespace hellologger{
 
-    static const char *TAG = "hello_logger.component";
+    static const char *TAG = "hellologger.component";
 
     void setup(){
         ESP_LOGD(TAG, 'Hello Logger');
