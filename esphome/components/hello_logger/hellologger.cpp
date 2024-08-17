@@ -1,5 +1,6 @@
 #include "esphome/core/helpers.h"
 #include "esphome/core/log.h"
+#include "hellologger.h"
 
 namespace esphome {
 namespace hellologger{
@@ -13,7 +14,7 @@ namespace hellologger{
 
     }
 
-    void hellologger::dump_config(){
+    void HelloLogger::dump_config(){
         ESP_LOGCONFIG(TAG, "Empty component");
     }
 

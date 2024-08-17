@@ -1,7 +1,6 @@
 #pragma once
 
 #include <utility>
-#include "esphome/components/binary_sensor.h"
 #include "esphome/core/automation.h"
 #include "esphome/core/component.h"
 
