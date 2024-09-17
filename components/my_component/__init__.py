@@ -3,7 +3,7 @@ import esphome.config_validation as cv
 from esphome.const import CONF_ID
 
 my_component_ns = cg.esphome_ns.namespace("my_component")
-MyComponent = empty_component_ns.class_("MyComponent", cg.Component)
+MyComponent = my_component_ns.class_("MyComponent", cg.Component)
 
 CONFIG_SCHEMA = cv.Schema(
     {
