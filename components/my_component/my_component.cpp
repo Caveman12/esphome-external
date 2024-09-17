@@ -7,7 +7,7 @@ namespace my_component {
 static const char *TAG = "my_component.component";
 
 void MyComponent::setup() {
-
+    ESP_LOGI(TAG, "My Component is setup")
 }
 
 void MyComponent::loop() {
