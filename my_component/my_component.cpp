@@ -1,0 +1,23 @@
+#include "esphome/core/log.h"
+#include "my_component.h"
+
+namespace esphome {
+namespace my_component {
+
+static const char *TAG = "my_component.component";
+
+void MyComponent::setup() {
+
+}
+
+void MyComponent::loop() {
+
+}
+
+void MyComponent::dump_config(){
+    ESP_LOGCONFIG(TAG, "My component");
+}
+
+
+}  // namespace My_component
+}  // namespace esphome
