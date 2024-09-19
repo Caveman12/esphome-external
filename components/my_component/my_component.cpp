@@ -11,7 +11,7 @@ void MyComponent::setup() {
 }
 
 void MyComponent::loop() {
-
+    ESP_LOGI(TAG, "My Component")
 }
 
 void MyComponent::dump_config(){
