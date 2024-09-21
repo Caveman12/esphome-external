@@ -4,9 +4,7 @@ from esphome.components import sensor, output
 from esphome.const import CONF_ID
 
 simplepid_ns = cg.esphome_ns.namespace("simplepid")
-SimplePID = simplepid_ns.class_("SimplePID", cg.EntityBase)
-
-IS_PLATFORM_COMPONENT = True
+SimplePID = simplepid_ns.class_("SimplePID", cg.Component)
 
 CONFIG_SCHEMA = cv.Schema(
     {
