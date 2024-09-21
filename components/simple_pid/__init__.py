@@ -1,15 +1,14 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import sensor, output
-from esphome.const import CONF_ID, CONF_NAME
+from esphome.const import CONF_ID
 
 simple_pid_ns = cg.esphome_ns.namespace("simple_pid")
 SimplePID = simple_pid_ns.class_("SimplePID", cg.Component)
 
 CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(): cv.declare_id(SimplePID),
-        cv.Optional(CONF_NAME)
+        cv.GenerateID(): cv.declare_id(SimplePID)
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
