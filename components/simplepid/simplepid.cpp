@@ -16,8 +16,8 @@ void SimplePID::loop() {
 
 void SimplePID::dump_config(){
     ESP_LOGCONFIG(TAG, "Simple PID:");
-    ESP_LOGCONFIG(TAG, "  Propotional: %", get_p());
-    ESP_LOGCONFIG(TAG, "  Integral: %", get_i());
+    ESP_LOGCONFIG(TAG, "  Propotional: %.1f", get_p());
+    ESP_LOGCONFIG(TAG, "  Integral: %.1f", get_i());
 }
 
 }  // namespace simplepid
