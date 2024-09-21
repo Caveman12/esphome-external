@@ -6,8 +6,6 @@ from esphome.const import CONF_ID
 simplepid_ns = cg.esphome_ns.namespace("simplepid")
 SimplePID = simplepid_ns.class_("SimplePID", cg.EntityBase)
 
-IS_PLATFORM_COMPONENT = True
-
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(SimplePID)
