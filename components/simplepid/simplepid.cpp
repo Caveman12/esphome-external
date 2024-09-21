@@ -18,6 +18,7 @@ void SimplePID::dump_config(){
     ESP_LOGCONFIG(TAG, "Simple PID:");
     ESP_LOGCONFIG(TAG, "  Propotional: %.1f", get_p());
     ESP_LOGCONFIG(TAG, "  Integral: %.1f", get_i());
+    ESP_LOFCONFIG(TAG, "  Bias: %.1f", get_bias());
 }
 
 }  // namespace simplepid
