@@ -2,8 +2,8 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.const import CONF_ID
 
-my_component_ns = cg.esphome_ns.namespace("simple_pid")
-MyComponent = my_component_ns.class_("SimplePID", cg.Component)
+simple_pid_ns = cg.esphome_ns.namespace("simple_pid")
+SimplePID = simple_pid_ns.class_("SimplePID", cg.Component)
 
 CONFIG_SCHEMA = cv.Schema(
     {
