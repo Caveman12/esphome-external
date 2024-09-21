@@ -4,9 +4,11 @@ from esphome.components import sensor, output
 from esphome.const import CONF_ID
 
 simple_pid_ns = cg.esphome_ns.namespace("simple_pid")
-SimplePID = simple_pid_ns.class_("SimplePID", cg.EntityBase)
+SimplePID = simplepid_ns.class_("SimplePID", cg.EntityBase)
 
-SIMPLEPID_SCHEMA = cv.ENTITY_BASE_SCHEMA.extend(
+IS_PLATFORM_COMPONENT = True
+
+CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(SimplePID)
     }

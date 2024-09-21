@@ -3,7 +3,7 @@
 #include "esphome/core/component.h"
 
 namespace esphome {
-namespace simple_pid {
+namespace simplepid {
 
 class SimplePID : public Component {
  public:
@@ -13,5 +13,5 @@ class SimplePID : public Component {
 };
 
 
-}  // namespace simpe_pid
+}  // namespace simpepid
 }  // namespace esphome

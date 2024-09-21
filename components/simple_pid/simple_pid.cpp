@@ -2,9 +2,9 @@
 #include "simple_pid.h"
 
 namespace esphome {
-namespace simple_pid {
+namespace simplepid {
 
-static const char *TAG = "simple_pid";
+static const char *TAG = "simplepid";
 
 void SimplePID::setup() {
     ESP_LOGI(TAG, "Simple PID Setup");
@@ -19,5 +19,5 @@ void SimplePID::dump_config(){
 }
 
 
-}  // namespace simple_pid
+}  // namespace simplepid
 }  // namespace esphome
