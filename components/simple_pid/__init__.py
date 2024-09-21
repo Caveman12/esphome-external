@@ -3,7 +3,7 @@ import esphome.config_validation as cv
 from esphome.components import sensor, output
 from esphome.const import CONF_ID
 
-simple_pid_ns = cg.esphome_ns.namespace("simplepid")
+simplepid_ns = cg.esphome_ns.namespace("simplepid")
 SimplePID = simplepid_ns.class_("SimplePID", cg.EntityBase)
 
 IS_PLATFORM_COMPONENT = True
