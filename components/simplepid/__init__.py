@@ -6,8 +6,8 @@ from esphome.const import CONF_ID
 simplepid_ns = cg.esphome_ns.namespace("simplepid")
 SimplePID = simplepid_ns.class_("SimplePID", cg.Component)
  
-CONF_P = "proportional"
-CONF_I = "integral"
+CONF_P = "p"
+CONF_I = "i"
 
 CONFIG_SCHEMA = cv.Schema(
     {
