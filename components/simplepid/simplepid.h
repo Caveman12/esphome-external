@@ -18,6 +18,10 @@ class SimplePID : public Component  {
   void set_p(float proportional) {(*this).p_=proportional;}
   void set_i(float integral) {(*this).i_=integral;}
 
+  // Get Parameters Functions
+  float get_p() {return (*this).p_;}
+  float get_i() {return (*this).i_;}
+
  private:
   float p_ = 0;
   float i_ = 0;
