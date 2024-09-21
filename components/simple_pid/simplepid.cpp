@@ -1,5 +1,5 @@
 #include "esphome/core/log.h"
-#include "simple_pid.h"
+#include "simplepid.h"
 
 namespace esphome {
 namespace simplepid {
@@ -15,7 +15,7 @@ void SimplePID::loop() {
 }
 
 void SimplePID::dump_config(){
-    ESP_LOGCONFIG(TAG, "Simple PID Config");
+    ESP_LOGCONFIG(TAG, "Simple PID:");
 }
 
 

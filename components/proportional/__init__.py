@@ -3,14 +3,14 @@ import esphome.config_validation as cv
 from esphome.components import sensor, output
 from esphome.const import CONF_ID
 
-simplepid_ns = cg.esphome_ns.namespace("simplepid")
-SimplePID = simplepid_ns.class_("SimplePID", cg.EntityBase)
+proportional_ns = cg.esphome_ns.namespace("proportional")
+Proportional = proportional_ns.class_("Proportional", cg.Component)
 
 IS_PLATFORM_COMPONENT = True
 
 CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(): cv.declare_id(SimplePID)
+        cv.GenerateID(): cv.declare_id(Proportional)
     }
 ).extend(cv.COMPONENT_SCHEMA)
 

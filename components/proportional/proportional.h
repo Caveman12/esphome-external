@@ -1,11 +1,12 @@
 #pragma once
 
 #include "esphome/core/component.h"
+#include "components/simple_pid/simplepid.h"
 
 namespace esphome {
-namespace simplepid {
+namespace proportional {
 
-class SimplePID : public Component {
+class Proportional : public SimplePID {
  public:
   void setup() override;
   void loop() override;
@@ -13,5 +14,5 @@ class SimplePID : public Component {
 };
 
 
-}  // namespace simpepid
+}  // namespace proportional
 }  // namespace esphome
