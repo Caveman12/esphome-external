@@ -18,6 +18,5 @@ void SimplePID::dump_config(){
     ESP_LOGCONFIG(TAG, "Simple PID:");
 }
 
-
 }  // namespace simplepid
 }  // namespace esphome
