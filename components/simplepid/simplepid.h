@@ -15,7 +15,7 @@ class SimplePID : public Component  {
   void dump_config() override;
 
   // Calculation Functions
-  //void error_calc();
+  void error_calc();
 
   // Set Parameters Functions
   void set_p(float proportional) {(*this).p_=proportional;}

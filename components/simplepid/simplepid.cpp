@@ -21,5 +21,9 @@ void SimplePID::dump_config(){
     ESP_LOGCONFIG(TAG, "  Bias: %.1f", get_bias());
 }
 
+void SimplePID::error_calc() {
+    
+}
+
 }  // namespace simplepid
 }  // namespace esphome

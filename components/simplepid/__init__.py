@@ -9,13 +9,17 @@ SimplePID = simplepid_ns.class_("SimplePID", cg.Component)
 CONF_P = "p"
 CONF_I = "i"
 CONF_BIAS = "bias"
+CONF_SETPOINT = "setpoint"
+CONF_CONTROL_VARIABLE = "control_variable"
 
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(SimplePID),
         cv.Required(CONF_P): cv.float_,
+        cv.Required(CONF_SETPOINT): cv.use_id(sensor.Sensor),
+        cv.Required(CONF_CONTROL_VARIABLE): cv.use_id(sensor.Sensor),
         cv.Optional(CONF_I, default=0.0): cv.float_,
-        cv.Optional(CONF_BIAS, default=0.0): cv.float_
+        cv.Optional(CONF_BIAS, default=0.0): cv.float_range(0.0, 100.0, True, True)
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
