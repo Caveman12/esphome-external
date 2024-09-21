@@ -7,7 +7,7 @@ namespace simple_pid {
 static const char *TAG = "simple_pid";
 
 void SimplePID::setup() {
-    ESP_LOGI(TAG, "My Component is setup");
+    ESP_LOGI(TAG, "Simple PID Setup");
 }
 
 void SimplePID::loop() {
@@ -15,7 +15,7 @@ void SimplePID::loop() {
 }
 
 void SimplePID::dump_config(){
-    ESP_LOGCONFIG(TAG, "My component");
+    ESP_LOGCONFIG(TAG, "Simple PID Config");
 }
 
 
