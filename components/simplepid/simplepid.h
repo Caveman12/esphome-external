@@ -15,8 +15,8 @@ class SimplePID : public Component  {
   void dump_config() override;
 
   // Set Parameters Functions
-  void set_p(float p) {SimplePID.p_ = proportional;}
-  void set_i(float i) {SimplePID.i_ = integral;}
+  void set_p(float proportional) {SimplePID.p_ = proportional;}
+  void set_i(float integral) {SimplePID.i_ = integral;}
 
  private:
   float p_ = 0;
