@@ -8,12 +8,14 @@ SimplePID = simplepid_ns.class_("SimplePID", cg.Component)
  
 CONF_P = "p"
 CONF_I = "i"
+CONF_BIAS = "bias"
 
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(SimplePID),
         cv.Required(CONF_P): cv.float_,
-        cv.Optional(CONF_I, default=0.0): cv.float_
+        cv.Optional(CONF_I, default=0.0): cv.float_,
+        cv.Optional(CONF_BIAS, default=0.0): cv.float_
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
@@ -24,3 +26,4 @@ async def to_code(config):
 
     cg.add(var.set_p(config[CONF_P]))
     cg.add(var.set_i(config[CONF_I]))
+    cg.add(var.set_bias(config[CONF_BIAS]))
