@@ -6,11 +6,11 @@ from esphome.const import CONF_ID
 simple_pid_ns = cg.esphome_ns.namespace("simple_pid")
 SimplePID = simple_pid_ns.class_("SimplePID", cg.EntityBase)
 
-CONFIG_SCHEMA = cv.Schema(
+SIMPLEPID_SCHEMA = cv.ENTITY_BASE_SCHEMA.extend(
     {
         cv.GenerateID(): cv.declare_id(SimplePID)
     }
-).extend(cv.COMPONENT_SCHEMA)
+)
 
 
 async def to_code(config):
