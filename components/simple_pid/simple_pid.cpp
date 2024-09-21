@@ -19,5 +19,5 @@ void SimplePID::dump_config(){
 }
 
 
-}  // namespace SimplePID
+}  // namespace simple_pid
 }  // namespace esphome
