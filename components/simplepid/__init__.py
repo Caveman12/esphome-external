@@ -5,7 +5,7 @@ from esphome.const import CONF_ID
 
 simplepid_ns = cg.esphome_ns.namespace("simplepid")
 SimplePID = simplepid_ns.class_("SimplePID", cg.Component)
-
+ 
 CONF_P = "p"
 CONF_I = "i"
 
@@ -22,5 +22,5 @@ async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
 
-    cg.add(var.set_p("p"))
-    cg.add(var.set_i("i"))
+    cg.add(var.set_p(CONF_P))
+    cg.add(var.set_i(CONF_I))
