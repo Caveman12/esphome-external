@@ -25,5 +25,5 @@ class SimplePID : public Component  {
 };
 
 
-}  // namespace simpepid
+}  // namespace simplepid
 }  // namespace esphome
