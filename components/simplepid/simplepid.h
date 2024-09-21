@@ -8,9 +8,15 @@ namespace simplepid {
 class SimplePID : public Component  {
 
  public:
+
+  // Main Functions
   void setup() override;
   void loop() override;
   void dump_config() override;
+
+  // Set Parameters Functions
+  set_p(float p){SimplePID.p_ = p}
+  set_i(float i){SimplePID.i_ = i}
 
  private:
   float p_ = 0;
