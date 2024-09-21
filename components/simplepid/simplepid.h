@@ -5,7 +5,7 @@
 namespace esphome {
 namespace simplepid {
 
-class SimplePID {
+class SimplePID : public Component  {
  public:
   void setup() override;
   void loop() override;
