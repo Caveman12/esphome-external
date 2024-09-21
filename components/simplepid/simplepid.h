@@ -15,8 +15,8 @@ class SimplePID : public Component  {
   void dump_config() override;
 
   // Set Parameters Functions
-  void set_p(float p){SimplePID.p_ = p}
-  void set_i(float i){SimplePID.i_ = i}
+  void set_p(float p) {SimplePID.p_ = p;}
+  void set_i(float i) {SimplePID.i_ = i;}
 
  private:
   float p_ = 0;
