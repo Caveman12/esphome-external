@@ -11,6 +11,7 @@ SimplePID = simplepid_ns.class_("SimplePID", cg.Component)
 CONF_P = "p"
 CONF_I = "i"
 CONF_BIAS = "bias"
+CONF_DEADBAND = "deadband"
 CONF_SETPOINT = "setpoint"
 CONF_CONTROL_VARIABLE = "control_variable"
 
@@ -21,7 +22,8 @@ CONFIG_SCHEMA = cv.Schema(
         #cv.Required(CONF_SETPOINT): , # Could this be a sensor or does it need to be something else? Could we use a number?
         cv.Required(CONF_CONTROL_VARIABLE): cv.use_id(sensor.Sensor),
         cv.Optional(CONF_I, default=0.0): cv.float_,
-        cv.Optional(CONF_BIAS, default=0.0): cv.float_range(0.0, 100.0, True, True)
+        cv.Optional(CONF_BIAS, default=0.0): cv.float_range(0.0, 100.0, True, True),
+        cv.Optional(CONF_DEADBAND, default=(CONF_CONTROL_VARIABLE*0.1)): cv.float_
     }
 ).extend(cv.COMPONENT_SCHEMA)
 

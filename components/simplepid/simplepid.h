@@ -23,6 +23,9 @@ class SimplePID : public Component  {
   void set_i(float integral) {(*this).i_=integral;}
   void set_d(float derviative) {(*this).d_= derviative;}
   void set_bias(float bias) {(*this).bias_ = bias;}
+  void set_deadband(float deadband) { this->db_ = deadband;}
+
+  // Set Control Parameters
   //void set_setpoint(sensor::Sensor *sensor); // Sets the setpoint
   void set_control_variable(sensor::Sensor *sensor); // Sets the Control Variable
 
@@ -37,11 +40,13 @@ class SimplePID : public Component  {
   float i_ = 0.0; //integral rate per Minute
   float d_ = 0.0; //NOT USED
   float bias_ = 0.0;
+  float db_ = 0.0;
   float control_variable = 0.0;
   float setpoint = 0.0;
 
   // Output Values
   float output = 0.0;
+  float error_value = 0.0;
   
 };
 
