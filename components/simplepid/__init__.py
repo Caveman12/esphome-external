@@ -16,7 +16,7 @@ CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(SimplePID),
         cv.Required(CONF_P): cv.float_,
-        cv.Required(CONF_SETPOINT): cv.use_id(sensor.Sensor),
+        #cv.Required(CONF_SETPOINT): , # Could this be a sensor or does it need to be something else? Could we use a number?
         cv.Required(CONF_CONTROL_VARIABLE): cv.use_id(sensor.Sensor),
         cv.Optional(CONF_I, default=0.0): cv.float_,
         cv.Optional(CONF_BIAS, default=0.0): cv.float_range(0.0, 100.0, True, True)

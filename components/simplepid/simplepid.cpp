@@ -25,5 +25,9 @@ void SimplePID::error_calc() {
     
 }
 
+void SimplePID::set_control_vairable(sensor::Sensor *sensor) {
+    
+}
+
 }  // namespace simplepid
 }  // namespace esphome
