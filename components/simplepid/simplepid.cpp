@@ -11,7 +11,7 @@ void SimplePID::setup() {
 }
 
 void SimplePID::loop() {
-    
+
 }
 
 void SimplePID::dump_config(){
@@ -22,11 +22,9 @@ void SimplePID::dump_config(){
 }
 
 void SimplePID::error_calc() {
-    this->error_value=(*this).setpoint-(*this).control_variable;
-}
-
-void SimplePID::set_control_variable(sensor::Sensor *sensor) {
-
+    if(this->control_sensor != nullptr){ // Add enable check here
+        (*this).error_value=1.0;
+    }
 }
 
 }  // namespace simplepid

@@ -26,8 +26,7 @@ class SimplePID : public Component  {
   void set_deadband(float deadband) { this->db_ = deadband;}
 
   // Set Control Parameters
-  //void set_setpoint(sensor::Sensor *sensor); // Sets the setpoint
-  void set_control_variable(sensor::Sensor *sensor); // Sets the Control Variable
+  void compute_contorl_variable()
 
   // Get Parameters Functions
   float get_p() {return (*this).p_;}
@@ -41,12 +40,15 @@ class SimplePID : public Component  {
   float d_ = 0.0; //NOT USED
   float bias_ = 0.0;
   float db_ = 0.0;
-  float control_variable = 0.0;
-  float setpoint = 0.0;
 
   // Output Values
   float output = 0.0;
   float error_value = 0.0;
+
+  //Sensor Values
+  sensor::Sensor *control_sensor{nullptr}
+  //Setpoint sensor goes here
+  //Enable Goes here { Enable sets the output to zero}
   
 };
 
