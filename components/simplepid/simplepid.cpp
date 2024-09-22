@@ -25,8 +25,8 @@ void SimplePID::error_calc() {
     
 }
 
-void SimplePID::set_control_vairable(sensor::Sensor *sensor) {
-    
+void SimplePID::set_control_variable(sensor::Sensor *sensor) {
+
 }
 
 }  // namespace simplepid

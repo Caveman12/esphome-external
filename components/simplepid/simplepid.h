@@ -23,7 +23,7 @@ class SimplePID : public Component  {
   void set_d(float derviative) {(*this).d_= derviative;}
   void set_bias(float bias) {(*this).bias_ = bias;}
   //void set_setpoint(sensor::Sensor *sensor); // Sets the setpoint
-  void set_control_vairable(sensor::Sensor *sensor); // Sets the Control Variable
+  void set_control_variable(sensor::Sensor *sensor); // Sets the Control Variable
 
   // Get Parameters Functions
   float get_p() {return (*this).p_;}
