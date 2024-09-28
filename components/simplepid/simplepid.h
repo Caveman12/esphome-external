@@ -2,7 +2,6 @@
 
 #include "esphome/core/component.h"
 #include "esphome/components/sensor/sensor.h"
-#include "esphome/components/number/number.h"
 
 namespace esphome {
 namespace simplepid {
