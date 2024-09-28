@@ -7,14 +7,17 @@ namespace simplepid {
 static const char *TAG = "simplepid";
 
 void SimplePID::setup() {
-    this->control_variable=this->control_sensor->get_state();
+    this->control_sensor->add_on_state_callback([this](float state) {
+        this->control_variable = state;
+
+        this->publish_state();
+    });
     ESP_LOGI(TAG, "Simple PID Setup");
 }
 
 void SimplePID::loop() {
-    this->control_variable=this->control_sensor->get_state(); 
+    
     this->error_calc();
-    ESP_LOGD(TAG, "Error: %.1f", this->error_value);
 }
 
 void SimplePID::dump_config() {
@@ -33,6 +36,11 @@ void SimplePID::error_calc() {
 
 void SimplePID::compute_control_variable() {
 
+}
+
+void SimplePID::publish_state() {
+    ESP_LOGD(TAG, "Simple PID - State:");
+    ESP_LOGD(TAG, "  Error: %.1f", this->error_value);
 }
 
 }  // namespace simplepid

@@ -29,6 +29,7 @@ class SimplePID : public Component  {
 
   // Set Control Parameters
   void compute_control_variable();
+  void publish_state();
 
   // Get Parameters Functions
   float get_p() {return (*this).p_;}
