@@ -7,7 +7,7 @@ namespace simplepid {
 static const char *TAG = "simplepid";
 
 void SimplePID::setup() {
-    this->control_sensor->add_on_callback([this](float state)) {
+    this->control_sensor->add_on_state_callback([this](float state)) {
         //Add setting the control variable
         this->publish_state();
     }
