@@ -16,7 +16,7 @@ void SimplePID::setup() {
 }
 
 void SimplePID::loop() {
-    
+    this->publish_state();
     this->error_calc();
 }
 
