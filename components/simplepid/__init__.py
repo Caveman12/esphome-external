@@ -12,7 +12,7 @@ CONF_P = "p"
 CONF_I = "i"
 CONF_BIAS = "bias"
 CONF_DEADBAND = "deadband"
-CONF_SETPOINT = "setpoint"
+CONF_SETPOINT = "control_setpoint"
 CONF_CONTROL_VARIABLE = "control_variable"
 # Add Enable Sensor or binary here.
 
