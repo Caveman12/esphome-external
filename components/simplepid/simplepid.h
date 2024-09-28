@@ -24,7 +24,7 @@ class SimplePID : public Component  {
   void set_d(float derviative) {(*this).d_= derviative;}
   void set_bias(float bias) {(*this).bias_ = bias;}
   void set_deadband(float deadband) { this->db_ = deadband;}
-  void set_coontrol_variable(sensor::Sensor *sensor) { this->control_sensor=sensor;}
+  void set_control_variable(sensor::Sensor *sensor) { this->control_sensor=sensor;}
   void set_setpoint_variable();
 
   // Set Control Parameters
