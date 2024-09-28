@@ -34,7 +34,7 @@ class SimplePID : public Component  {
   float get_p() {return (*this).p_;}
   float get_i() {return (*this).i_;}
   float get_bias() {return (*this).bias_;}
-  float get_control_setpoint() {return this->control_setpoint;}
+  float get_setpoint_variable() {return this->control_setpoint;}
 
  private:
   // Input variables

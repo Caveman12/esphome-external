@@ -12,7 +12,7 @@ CONF_P = "p"
 CONF_I = "i"
 CONF_BIAS = "bias"
 CONF_DEADBAND = "deadband"
-CONF_SETPOINT = "control_setpoint"
+CONF_SETPOINT = "setpoint_variable"
 CONF_CONTROL_VARIABLE = "control_variable"
 # Add Enable Sensor or binary here.
 
@@ -39,4 +39,4 @@ async def to_code(config):
     cg.add(var.set_p(config[CONF_P]))
     cg.add(var.set_i(config[CONF_I]))
     cg.add(var.set_bias(config[CONF_BIAS]))
-    cg.add(var.set_control_setpoint(config[CONF_SETPOINT]))
+    cg.add(var.set_setpoint_variable(config[CONF_SETPOINT]))
