@@ -25,7 +25,7 @@ class SimplePID : public Component  {
   void set_bias(float bias) {(*this).bias_ = bias;}
   void set_deadband(float deadband) { this->db_ = deadband;}
   void set_control_variable(sensor::Sensor *sensor) { this->control_sensor=sensor;}
-  void set_setpoint_variable(float setpoint) {this->control_setpoint;}
+  void set_setpoint_variable(float setpoint) {this->setpoint_variable = setpoint;}
 
   // Set Control Parameters
   void compute_control_variable();
@@ -34,7 +34,7 @@ class SimplePID : public Component  {
   float get_p() {return (*this).p_;}
   float get_i() {return (*this).i_;}
   float get_bias() {return (*this).bias_;}
-  float get_setpoint_variable() {return this->control_setpoint;}
+  float get_setpoint_variable() {return this->setpoint_variable;}
 
  private:
   // Input variables
@@ -43,7 +43,8 @@ class SimplePID : public Component  {
   float d_ = 0.0; //NOT USED
   float bias_ = 0.0;
   float db_ = 0.0;
-  float control_setpoint = 0.0;
+  float setpoint_variable = 0.0;
+  float control_variable = 0.0;
 
   // Output Values
   float output = 0.0;

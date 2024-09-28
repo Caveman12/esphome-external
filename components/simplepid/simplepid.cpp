@@ -12,7 +12,6 @@ void SimplePID::setup() {
         this->publish_state();
     }
     ESP_LOGI(TAG, "Simple PID Setup");
-
 }
 
 void SimplePID::loop() {
@@ -30,7 +29,7 @@ void SimplePID::dump_config() {
 
 void SimplePID::error_calc() {
     if(this->control_sensor != nullptr){ // Add enable check here
-        (*this).error_value=;
+        this->error_value=control_variable - setpoint_variable;
     }
 }
 
