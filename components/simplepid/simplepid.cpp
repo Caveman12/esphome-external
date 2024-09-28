@@ -12,7 +12,7 @@ void SimplePID::setup() {
 }
 
 void SimplePID::loop() {
-    this->control_variable=this->control_sensor.get_state(); 
+    this->control_variable=this->control_sensor->get_state(); 
     this->error_calc();
     ESP_LOGD(TAG, "Error: %.1f", this->error_value);
 }
