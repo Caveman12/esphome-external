@@ -11,7 +11,8 @@ void SimplePID::setup() {
 }
 
 void SimplePID::loop() {
-
+    this->error_calc();
+    ESP_LOGI(TAG, "Error: %.1f", this->error_value);
 }
 
 void SimplePID::dump_config() {

@@ -20,7 +20,7 @@ CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(SimplePID),
         cv.Required(CONF_P): cv.float_,
-        #cv.Required(CONF_SETPOINT): , # Could this be a sensor or does it need to be something else? Could we use a number?
+        cv.Required(CONF_SETPOINT): cv.float_, # Could this be a sensor or does it need to be something else? Could we use a number?
         cv.Required(CONF_CONTROL_VARIABLE): cv.use_id(sensor.Sensor),
         cv.Optional(CONF_I, default=0.0): cv.float_,
         cv.Optional(CONF_BIAS, default=0.0): cv.float_range(0.0, 100.0, True, True),
@@ -39,3 +39,4 @@ async def to_code(config):
     cg.add(var.set_p(config[CONF_P]))
     cg.add(var.set_i(config[CONF_I]))
     cg.add(var.set_bias(config[CONF_BIAS]))
+    cg.add(var.set_control_setpoint(config[CONF_SETPOINT]))
