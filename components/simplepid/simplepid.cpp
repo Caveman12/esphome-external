@@ -7,7 +7,7 @@ namespace simplepid {
 static const char *TAG = "simplepid";
 
 void SimplePID::setup() {
-    this->control_variable=this->control_sensor.get_state();
+    this->control_variable=this->control_sensor->get_state();
     ESP_LOGI(TAG, "Simple PID Setup");
 }
 
