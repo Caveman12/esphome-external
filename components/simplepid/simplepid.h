@@ -46,7 +46,7 @@ class SimplePID : public Component  {
   float error_value = 0.0;
 
   //Sensor Values
-  sensor::Sensor *control_sensor{nullptr}
+  sensor::Sensor *control_sensor{nullptr};
   //Setpoint sensor goes here
   //Enable Goes here { Enable sets the output to zero}
   
