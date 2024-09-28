@@ -27,5 +27,9 @@ void SimplePID::error_calc() {
     }
 }
 
+void SimplePID:compute_control_variable() {
+    
+}
+
 }  // namespace simplepid
 }  // namespace esphome

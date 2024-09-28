@@ -26,7 +26,7 @@ class SimplePID : public Component  {
   void set_deadband(float deadband) { this->db_ = deadband;}
 
   // Set Control Parameters
-  void compute_contorl_variable()
+  void compute_contorl_variable();
 
   // Get Parameters Functions
   float get_p() {return (*this).p_;}
