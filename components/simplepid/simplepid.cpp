@@ -51,7 +51,7 @@ void SimplePID::error_calc() {
             // Reverse Acting
             // As the Error Increases, the Output Decreases
             this->error_value=this->control_variable - this->setpoint_variable;
-            
+
         }   
     }
 }
@@ -60,7 +60,7 @@ void SimplePID::compute_output() {
     if(this->control_sensor != nullptr) { // Add enable check here
         float p_var = compute_propotional();
         float i_var = compute_integral(); 
-        float temp_out = p_var+i_var;
+        float temp_out = p_var+(this->output+i_var);
         
         // Add enable If statement here to return 0.0
         if (0 < temp_out && temp_out < 100) {
@@ -111,12 +111,12 @@ float SimplePID:: compute_integral() { // Need to setup rate calculation by fris
         // Reverse Acting
         // As the Error Increases, the Output Decreases
         if (this->error_value<0) {
-            // Output Positive Value
-            return 0.0;
+            // Output Negative Value
+            return (0-((this->i_/60000)*(temp_time)));
         }
         else {
-            // Output Negative Value
-            return 0.0;
+            // Output Positive Value
+            return ((this->i_/60000)*(temp_time));
         }
 
     }
