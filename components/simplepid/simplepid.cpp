@@ -23,10 +23,18 @@ void SimplePID::loop() {
 
 void SimplePID::dump_config() {
     ESP_LOGCONFIG(TAG, "Simple PID:");
+    ESP_LOGCONFIG(TAG, "  Control Variable: %s", this->control_sensor.get_name());
+    ESP_LOGCONFIG(TAG, "  Setpoint: %.1f", get_setpoint_variable());
+    if (this->direction_action) {
+        ESP_LOGCONFIG(TAG, "  Direction: Direct Acting");
+    }
+    else {
+        ESP_LOGCONFIG(TAG, "  Direction: Reverse Acting");
+    }
     ESP_LOGCONFIG(TAG, "  Propotional: %.1f", get_p());
     ESP_LOGCONFIG(TAG, "  Integral: %.1f", get_i());
+    ESP_LOGCONFIG(TAG, "  Deadband: %.1f", get_db());
     ESP_LOGCONFIG(TAG, "  Bias: %.1f", get_bias());
-    ESP_LOGCONFIG(TAG, "  Setpoint: %.1f", get_setpoint_variable());
 }
 
 void SimplePID::error_calc() {

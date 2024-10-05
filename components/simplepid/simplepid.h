@@ -21,8 +21,8 @@ class SimplePID : public Component  {
   void error_calc();
 
   // Set Parameters Functions
-  void set_p(float proportional) {(*this).p_=proportional;}
-  void set_i(float integral) {(*this).i_=integral;}
+  void set_p(float proportional) {this->p_=proportional;}
+  void set_i(float integral) {this->i_=integral;}
   void set_d(float derviative) {(*this).d_= derviative;}
   void set_bias(float bias) {(*this).bias_ = bias;}
   void set_deadband(float deadband) { this->db_ = deadband;}
@@ -41,9 +41,10 @@ class SimplePID : public Component  {
   float compute_integral(); // Calculate I protion of output
 
   // Get Parameters Functions
-  float get_p() {return (*this).p_;}
-  float get_i() {return (*this).i_;}
-  float get_bias() {return (*this).bias_;}
+  float get_p() {return this->p_;}
+  float get_i() {return this->i_;}
+  float get_db() {return this->db_;}
+  float get_bias() {return this->bias_;}
   float get_setpoint_variable() {return this->setpoint_variable;}
 
  private:
