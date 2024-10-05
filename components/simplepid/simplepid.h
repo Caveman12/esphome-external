@@ -14,7 +14,7 @@ class SimplePID : public Component  {
   void setup() override;
   void loop() override;
   void dump_config() override;
-  float get_setup_priority() const override { return setup_priority::AFTER_CONNECTION; }
+  float get_setup_priority() const override { return setup_priority::LATE; }
 
   // Calculation Functions
   void error_calc();
