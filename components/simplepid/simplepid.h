@@ -27,9 +27,10 @@ class SimplePID : public Component  {
   void set_deadband(float deadband) { this->db_ = deadband;}
   void set_control_sensor(sensor::Sensor *sensor) { this->control_sensor=sensor;}
   void set_setpoint_variable(float setpoint) {this->setpoint_variable = setpoint;}
+  bool set_time_between_states();
 
   // Set Control Parameters
-  void compute_control_variable();
+  void compute_output();
   void publish_state();
 
   // Get Parameters Functions
@@ -47,6 +48,7 @@ class SimplePID : public Component  {
   float db_ = 0.0;
   float setpoint_variable = 0.0;
   float control_variable = 0.0;
+  float time_between_states = 0.0; // This will be in ms. Need to be reset after each new state.
 
   // Output Values
   float output = 0.0;

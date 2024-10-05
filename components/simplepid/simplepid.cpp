@@ -32,18 +32,24 @@ void SimplePID::error_calc() {
         this->error_value=this->control_variable - this->setpoint_variable;
     }
     else {
-        ESP_LOGD(TAG, "Control Sensor is Null Pointer");
+        ESP_LOGV(TAG, "Control Sensor is Null Pointer");
     }
-    this->publish_state();
 }
 
-void SimplePID::compute_control_variable() {
-
+void SimplePID::compute_output() {
+    if(this->control_sensor != nullptr){ // Add enable check here
+        this->output = this->p_*this->error_calc;
+    }
+    else {
+        this->compute_output=0.0;
+        ESP_LOGV(TAG, "Control Sensor is Null Pointer");
+    }
 }
 
 void SimplePID::publish_state() {
     ESP_LOGD(TAG, "Simple PID - State:");
     ESP_LOGD(TAG, "  Error: %.1f", this->error_value);
+    ESP_LOGD(TAG, "  Output: %.1f", this->output);
 }
 
 }  // namespace simplepid
