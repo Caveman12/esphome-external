@@ -23,7 +23,7 @@ void SimplePID::loop() {
 
 void SimplePID::dump_config() {
     ESP_LOGCONFIG(TAG, "Simple PID:");
-    ESP_LOGCONFIG(TAG, "  Control Variable: %s", this->control_sensor.get_name());
+    ESP_LOGCONFIG(TAG, "  Control Variable: %s", this->control_sensor->get_name());
     ESP_LOGCONFIG(TAG, "  Setpoint: %.1f", get_setpoint_variable());
     if (this->direction_action) {
         ESP_LOGCONFIG(TAG, "  Direction: Direct Acting");
