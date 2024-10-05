@@ -91,11 +91,11 @@ float SimplePID:: compute_integral() { // Need to setup rate calculation by fris
         // As the Error Increases, the Output Increases
         if (this->error_value>0) {
             // Output Positive Value
-            return ((this->i_/60000)*(this->set_time_between_states()));
+            return ((this->i_/60000)*(temp_time));
         }
         else {
             // Output Negative Value
-            return (0-((this->i_/60000)*(this->set_time_between_states())));
+            return (0-((this->i_/60000)*(temp_time)));
         }
         
     }
