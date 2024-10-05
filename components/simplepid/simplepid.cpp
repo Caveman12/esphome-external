@@ -55,7 +55,7 @@ void SimplePID::compute_output() {
         float temp_out = p_var+i_var;
         
         // Add enable If statement here to return 0.0
-        if (0 < temp_out < 100) {
+        if (0 < temp_out && temp_out < 100) {
             this->output = temp_out;
         }
         else if ( temp_out > 100 ) {
