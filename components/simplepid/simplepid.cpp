@@ -10,6 +10,8 @@ void SimplePID::setup() {
     this->control_sensor->add_on_state_callback( [this](float state) {
         this->control_variable = state;
         this->error_calc();
+        this->compute_output();
+        this->publish_state();
     });
 
     ESP_LOGD(TAG, "Simple PID Setup");
