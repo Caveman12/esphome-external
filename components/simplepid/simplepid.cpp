@@ -7,6 +7,11 @@ namespace simplepid {
 static const char *TAG = "simplepid";
 
 void SimplePID::setup() {
+    // Add Callback here
+    this->control_sensor->add_on_state_callback( [this](float state) {
+        this->control_variable = state;
+    });
+
     ESP_LOGI(TAG, "Simple PID Setup");
 }
 
@@ -24,7 +29,7 @@ void SimplePID::dump_config() {
 
 void SimplePID::error_calc() {
     if(this->control_sensor != nullptr){ // Add enable check here
-        this->error_value=this->control_variable.get_state() - this->setpoint_variable;
+        this->error_value=this->control_variable - this->setpoint_variable;
     }
 }
 

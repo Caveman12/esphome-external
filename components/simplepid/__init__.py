@@ -37,6 +37,6 @@ async def to_code(config):
     cg.add(var.set_i(config[CONF_I]))
     cg.add(var.set_bias(config[CONF_BIAS]))
     cg.add(var.set_setpoint_variable(config[CONF_SETPOINT]))
-    
+
     sens = await cg.get_variable(config[CONF_CONTROL_VARIABLE])
-    cg.add(var.set_control_variable(sens))
+    cg.add(var.set_control_sensor(sens))
