@@ -7,16 +7,16 @@ namespace simplepid {
 static const char *TAG = "simplepid";
 
 void SimplePID::setup() {
-    // Add Callback here
     this->control_sensor->add_on_state_callback( [this](float state) {
         this->control_variable = state;
     });
 
-    ESP_LOGI(TAG, "Simple PID Setup");
+    ESP_LOGD(TAG, "Simple PID Setup");
 }
 
 void SimplePID::loop() {
     this->error_calc();
+    this->publish_state();
 }
 
 void SimplePID::dump_config() {
@@ -32,7 +32,6 @@ void SimplePID::error_calc() {
         this->error_value=this->control_variable - this->setpoint_variable;
     }
     else {
-        this->error_value=0.0;
         ESP_LOGD(TAG, "Control Sensor is Null Pointer");
     }
 }
