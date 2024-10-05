@@ -39,8 +39,10 @@ void SimplePID::error_calc() {
 }
 
 void SimplePID::compute_output() {
-    if(this->control_sensor != nullptr){ // Add enable check here
-        this->output = this->p_*this->error_value;
+    if(this->control_sensor != nullptr) { // Add enable check here
+        float p_var = compute_propotional();
+        float i_var = compute_integral(); 
+        this->output = p_var+i_var;
     }
     else {
         this->output=0.0;
@@ -48,10 +50,18 @@ void SimplePID::compute_output() {
     }
 }
 
-void SimplePID::publish_state() {
+float SimplePID::publish_state() {
     ESP_LOGD(TAG, "Simple PID - State:");
     ESP_LOGD(TAG, "  Error: %.1f", this->error_value);
     ESP_LOGD(TAG, "  Output: %.1f", this->output);
+}
+
+float SimplePID::compute_propotional() {
+    return this->error_value*this->p_;
+}
+
+void SimplePID:: compute_integral() { // Need to setup rate calculation by frist creating the time function
+    return 0.0;
 }
 
 }  // namespace simplepid

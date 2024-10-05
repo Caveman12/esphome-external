@@ -33,9 +33,12 @@ class SimplePID : public Component  {
   void set_i_present() {}
   void set_d_present() {}
 
-  // Set Control Parameters
-  void compute_output();
   void publish_state();
+
+  // Calculated values
+  void compute_output(); // Calcute output from 0-100%
+  float compute_propotional(); // Calculate P protion of output
+  float compute_integral(); // Calculate I protion of output
 
   // Get Parameters Functions
   float get_p() {return (*this).p_;}
@@ -45,9 +48,24 @@ class SimplePID : public Component  {
 
  private:
   // Input variables
-  float p_ = 0.0; //unit value where the output will be 100%
-  float i_ = 0.0; //integral rate per Minute
-  float d_ = 0.0; //NOT USED
+
+  /* {p_} Propotional Constant
+   * Currently - a propotion of the error
+   * Future - based on linear offset from the value
+   */
+  float p_ = 0.0;
+
+  /* {i_} Integral Constant
+   * Step function increase as Rate per minute
+   */
+  float i_ = 0.0;
+
+  /* {d_} Dervivative Constant
+   * Currently - Not Used
+   * Future - Nothing Planned
+   */
+  float d_ = 0.0;
+
   float bias_ = 0.0;
   float db_ = 0.0;
   float setpoint_variable = 0.0;
@@ -55,7 +73,7 @@ class SimplePID : public Component  {
   float time_between_states = 0.0; // This will be in ms. Need to be reset after each new state.
 
   //calculated Inputs values
-  bool i_pressent = false;
+  bool i_present = false;
   bool d_present = false;
 
   // Output Values
