@@ -104,9 +104,11 @@ float SimplePID:: compute_integral() { // Need to setup rate calculation by fris
         // As the Error Increases, the Output Decreases
         if (this->error_value<0) {
             // Output Positive Value
+            return 0.0;
         }
         else {
             // Output Negative Value
+            return 0.0;
         }
 
     }
