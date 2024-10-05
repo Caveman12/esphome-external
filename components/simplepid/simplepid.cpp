@@ -31,10 +31,20 @@ void SimplePID::dump_config() {
 
 void SimplePID::error_calc() {
     if(this->control_sensor != nullptr){ // Add enable check here
-        this->error_value=this->control_variable - this->setpoint_variable;
-    }
-    else {
-        ESP_LOGV(TAG, "Control Sensor is Null Pointer");
+
+        if (this->direction_action)
+        {
+            // Direct Acting
+            // As the Error Increases, the Output Increases
+            this->error_value=this->control_variable - this->setpoint_variable;
+        
+        }
+        else {
+            // Reverse Acting
+            // As the Error Increases, the Output Decreases
+            this->error_value=this->setpoint_variable - this->control_variable;
+
+        }   
     }
 }
 
@@ -42,7 +52,18 @@ void SimplePID::compute_output() {
     if(this->control_sensor != nullptr) { // Add enable check here
         float p_var = compute_propotional();
         float i_var = compute_integral(); 
-        this->output = p_var+i_var;
+        float temp_out = p_var+i_var;
+        
+        // Add enable If statement here to return 0.0
+        if (0 < temp_out < 100) {
+            this->output = temp_out;
+        }
+        else if ( temp_var > 100 ) {
+            this->output = 100.0;
+        }
+        else {
+            this-> output = 0.0;
+        }
     }
     else {
         this->output=0.0;
@@ -50,18 +71,55 @@ void SimplePID::compute_output() {
     }
 }
 
+// Need to work on this.
 void SimplePID::publish_state() {
     ESP_LOGD(TAG, "Simple PID - State:");
     ESP_LOGD(TAG, "  Error: %.1f", this->error_value);
     ESP_LOGD(TAG, "  Output: %.1f", this->output);
+    ESP_LOGV(TAG, "  TIME SINCE LAST STATE: %.1f ms", this->time_between_states);
 }
 
-float SimplePID::compute_propotional() {
+float SimplePID::compute_propotional() { 
     return this->error_value*this->p_;
 }
 
 float SimplePID:: compute_integral() { // Need to setup rate calculation by frist creating the time function
-    return 0.0;
+    float temp_time = this->set_time_between_states();
+    
+    if (this->direction_action)
+    {
+        // Direct Acting
+        // As the Error Increases, the Output Increases
+        if (this->error_value>0) {
+            // Output Positive Value
+            return ((this->i_/60000)*(this->set_time_between_states()));
+        }
+        else {
+            // Output Negative Value
+            return (0-((this->i_/60000)*(this->set_time_between_states())));
+        }
+        
+    }
+    else {
+        // Reverse Acting
+        // As the Error Increases, the Output Decreases
+        if (this->error_value<0) {
+            // Output Positive Value
+        }
+        else {
+            // Output Negative Value
+        }
+
+    }
+}
+
+float SimplePID::set_time_between_states() {
+    uint32_t now = millis();
+    uint32_t deltat = now - this->last_cycle;
+
+    this->last_cycle = now;
+
+    return deltat / 1000.0f; // Shopuld return ms
 }
 
 }  // namespace simplepid

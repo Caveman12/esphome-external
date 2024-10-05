@@ -14,6 +14,7 @@ CONF_BIAS = "bias"
 CONF_DEADBAND = "deadband"
 CONF_SETPOINT = "setpoint_variable"
 CONF_CONTROL_VARIABLE = "control_variable"
+CONF_DIRECTION = "direction"
 # Add Enable Sensor or binary here.
 
 CONFIG_SCHEMA = cv.Schema(
@@ -24,7 +25,8 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Required(CONF_CONTROL_VARIABLE): cv.use_id(sensor.Sensor),
         cv.Optional(CONF_I, default=0.0): cv.float_,
         cv.Optional(CONF_BIAS, default=0.0): cv.float_range(0.0, 100.0, True, True),
-        cv.Optional(CONF_DEADBAND, default=0.0): cv.float_
+        cv.Optional(CONF_DEADBAND, default=0.0): cv.float_,
+        cv.Optional(CONF_DIRECTION, True):cv.boolean
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
@@ -37,6 +39,7 @@ async def to_code(config):
     cg.add(var.set_i(config[CONF_I]))
     cg.add(var.set_bias(config[CONF_BIAS]))
     cg.add(var.set_setpoint_variable(config[CONF_SETPOINT]))
+    cg.add(var.set_direction(config[CONF_DIRECTION]))
 
     sens = await cg.get_variable(config[CONF_CONTROL_VARIABLE])
     cg.add(var.set_control_sensor(sens))

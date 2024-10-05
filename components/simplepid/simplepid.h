@@ -2,6 +2,7 @@
 
 #include "esphome/core/component.h"
 #include "esphome/components/sensor/sensor.h"
+#include "esphome/core/hal.h"
 
 namespace esphome {
 namespace simplepid {
@@ -27,11 +28,10 @@ class SimplePID : public Component  {
   void set_deadband(float deadband) { this->db_ = deadband;}
   void set_control_sensor(sensor::Sensor *sensor) { this->control_sensor=sensor;}
   void set_setpoint_variable(float setpoint) {this->setpoint_variable = setpoint;}
+  void set_direction(bool direction) {this->direction_action = direction;}
 
   // set Calculated Parameters
-  bool set_time_between_states() { return false;}
-  void set_i_present() {}
-  void set_d_present() {}
+  bool set_time_between_states();
 
   void publish_state();
 
@@ -70,7 +70,16 @@ class SimplePID : public Component  {
   float db_ = 0.0;
   float setpoint_variable = 0.0;
   float control_variable = 0.0;
-  float time_between_states = 0.0; // This will be in ms. Need to be reset after each new state.
+  
+  /* {direction_action} Direction Action of the PID Loop
+   * True = Direct Acting
+   * False = Reverse Acting
+   * 
+   * Initialized as Direct Acting
+   */
+  bool direction_action = true;
+
+  uint32_t last_cycle = 0;
 
   //calculated Inputs values
   bool i_present = false;
