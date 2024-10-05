@@ -44,14 +44,14 @@ void SimplePID::error_calc() {
         {
             // Direct Acting
             // As the Error Increases, the Output Increases
-            this->error_value=this->control_variable - this->setpoint_variable;
+            this->error_value=this->setpoint_variable - this->control_variable;
         
         }
         else {
             // Reverse Acting
             // As the Error Increases, the Output Decreases
-            this->error_value=this->setpoint_variable - this->control_variable;
-
+            this->error_value=this->control_variable - this->setpoint_variable;
+            
         }   
     }
 }
