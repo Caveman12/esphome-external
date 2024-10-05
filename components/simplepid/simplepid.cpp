@@ -50,7 +50,7 @@ void SimplePID::compute_output() {
     }
 }
 
-float SimplePID::publish_state() {
+void SimplePID::publish_state() {
     ESP_LOGD(TAG, "Simple PID - State:");
     ESP_LOGD(TAG, "  Error: %.1f", this->error_value);
     ESP_LOGD(TAG, "  Output: %.1f", this->output);
@@ -60,7 +60,7 @@ float SimplePID::compute_propotional() {
     return this->error_value*this->p_;
 }
 
-void SimplePID:: compute_integral() { // Need to setup rate calculation by frist creating the time function
+float SimplePID:: compute_integral() { // Need to setup rate calculation by frist creating the time function
     return 0.0;
 }
 
