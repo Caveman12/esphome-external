@@ -29,7 +29,7 @@ class SimplePID : public Component  {
   void set_setpoint_variable(float setpoint) {this->setpoint_variable = setpoint;}
 
   // set Calculated Parameters
-  bool set_time_between_states() {}
+  bool set_time_between_states() { return false;}
   void set_i_present() {}
   void set_d_present() {}
 
