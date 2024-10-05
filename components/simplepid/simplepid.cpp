@@ -58,7 +58,7 @@ void SimplePID::compute_output() {
         if (0 < temp_out < 100) {
             this->output = temp_out;
         }
-        else if ( temp_var > 100 ) {
+        else if ( temp_out > 100 ) {
             this->output = 100.0;
         }
         else {
@@ -76,7 +76,6 @@ void SimplePID::publish_state() {
     ESP_LOGD(TAG, "Simple PID - State:");
     ESP_LOGD(TAG, "  Error: %.1f", this->error_value);
     ESP_LOGD(TAG, "  Output: %.1f", this->output);
-    ESP_LOGV(TAG, "  TIME SINCE LAST STATE: %.1f ms", this->time_between_states);
 }
 
 float SimplePID::compute_propotional() { 

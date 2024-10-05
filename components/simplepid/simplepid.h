@@ -31,7 +31,7 @@ class SimplePID : public Component  {
   void set_direction(bool direction) {this->direction_action = direction;}
 
   // set Calculated Parameters
-  bool set_time_between_states();
+  float set_time_between_states();
 
   void publish_state();
 
