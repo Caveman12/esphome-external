@@ -9,7 +9,7 @@ static const char *TAG = "simplepid";
 void SimplePID::setup() {
     this->control_sensor->add_on_state_callback( [this](float state) {
         this->control_variable = state;
-        this->error_calc;
+        this->error_calc();
     });
 
     ESP_LOGD(TAG, "Simple PID Setup");
@@ -34,7 +34,7 @@ void SimplePID::error_calc() {
     else {
         ESP_LOGD(TAG, "Control Sensor is Null Pointer");
     }
-    this->publish_state;
+    this->publish_state();
 }
 
 void SimplePID::compute_control_variable() {
