@@ -38,10 +38,10 @@ void SimplePID::error_calc() {
 
 void SimplePID::compute_output() {
     if(this->control_sensor != nullptr){ // Add enable check here
-        this->output = this->p_*this->error_calc;
+        this->output = this->p_*this->error_value;
     }
     else {
-        this->compute_output=0.0;
+        this->output=0.0;
         ESP_LOGV(TAG, "Control Sensor is Null Pointer");
     }
 }
