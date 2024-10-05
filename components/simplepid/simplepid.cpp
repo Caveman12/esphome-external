@@ -62,7 +62,7 @@ void SimplePID::compute_output() {
             this->output = 100.0;
         }
         else {
-            this-> output = 0.0;
+            this->output = 0.0;
         }
     }
     else {
