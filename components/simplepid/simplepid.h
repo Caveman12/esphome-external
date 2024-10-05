@@ -59,7 +59,7 @@ class SimplePID : public Component  {
   /* {i_} Integral Constant
    * Step function increase as Rate per minute
    */
-  float i_ = NAN;
+  float i_ = 0.0;
 
   /* {d_} Dervivative Constant
    * Currently - Not Used
@@ -67,8 +67,8 @@ class SimplePID : public Component  {
    */
   float d_ = NAN;
 
-  float bias_ = NAN;
-  float db_ = NAN;
+  float bias_ = 0.0;
+  float db_ = 0.0;
   float setpoint_variable = 0.0;
   float control_variable = 0.0;
   
