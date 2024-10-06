@@ -4,6 +4,8 @@
 #include "esphome/components/sensor/sensor.h"
 #include "esphome/core/hal.h"
 
+#include <cmath>
+
 namespace esphome {
 namespace simplepid {
 
