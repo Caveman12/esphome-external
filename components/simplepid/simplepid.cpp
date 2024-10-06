@@ -32,9 +32,15 @@ void SimplePID::dump_config() {
         ESP_LOGCONFIG(TAG, "  Direction: Reverse Acting");
     }
     ESP_LOGCONFIG(TAG, "  Propotional: %.1f", get_p());
-    ESP_LOGCONFIG(TAG, "  Integral: %.1f", get_i());
-    ESP_LOGCONFIG(TAG, "  Deadband: %.1f", get_db());
-    ESP_LOGCONFIG(TAG, "  Bias: %.1f", get_bias());
+    if (!std::isnan(this->i_)) {
+        ESP_LOGCONFIG(TAG, "  Integral: %.1f", get_i());
+    }
+    if (!std::isnan(this->db_)) {
+        ESP_LOGCONFIG(TAG, "  Deadband: %.1f", get_db());
+    }
+    if (!std::isnan(this->bias_)) {
+        ESP_LOGCONFIG(TAG, "  Bias: %.1f", get_bias());
+    }
 }
 
 void SimplePID::error_calc() {

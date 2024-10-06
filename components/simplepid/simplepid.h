@@ -61,16 +61,16 @@ class SimplePID : public Component  {
   /* {i_} Integral Constant
    * Step function increase as Rate per minute
    */
-  float i_ = 0.0;
+  float i_ = Nan;
 
   /* {d_} Dervivative Constant
    * Currently - Not Used
    * Future - Nothing Planned
    */
-  float d_ = NAN;
+  float d_ = NaN;
 
-  float bias_ = 0.0;
-  float db_ = 0.0;
+  float bias_ = NaN;
+  float db_ = NaN;
   float setpoint_variable = 0.0;
   float control_variable = 0.0;
   
@@ -83,10 +83,6 @@ class SimplePID : public Component  {
   bool direction_action = true;
 
   uint32_t last_cycle = 0;
-
-  //calculated Inputs values
-  bool i_present = false;
-  bool d_present = false;
 
   // Output Values
   float output = 0.0;
