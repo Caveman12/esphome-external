@@ -1,6 +1,7 @@
 # Folders
 Tests/
 __pycache__/
+.vscode/
 
 # File Exentsions
 *.yaml
