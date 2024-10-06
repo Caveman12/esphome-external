@@ -76,13 +76,14 @@ void SimplePID::compute_output() {
     if(this->control_sensor != nullptr) { // Add enable check here
         float p_var = compute_propotional();
         float i_var = compute_integral();
+        float temp_out = 0.0;
         
         // Check if a bias is being used
         if (!std::isnan(this->bias_)) {
-            float temp_out = p_var+this->bias_+(this->output+i_var);
+            temp_out = p_var+this->bias_+(this->output+i_var);
         }
         else {
-            float temp_out = p_var+(this->output+i_var);
+            temp_out = p_var+(this->output+i_var);
         }
 
         // Add enable If statement here to return 0.0
