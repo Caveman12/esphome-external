@@ -80,10 +80,10 @@ void SimplePID::compute_output() {
         
         // Check if a bias is being used
         if (!std::isnan(this->bias_)) {
-            temp_out = p_var+this->bias_+(this->output+i_var);
+            temp_out = p_var+this->bias_+i_var;
         }
         else {
-            temp_out = p_var+(this->output+i_var);
+            temp_out = p_var+i_var;
         }
 
         // Add enable If statement here to return 0.0
@@ -126,11 +126,11 @@ float SimplePID:: compute_integral() { // Need to setup rate calculation by fris
         // As the Error Increases, the Output Increases
         if (this->error_value>0) {
             // Output Positive Value
-            return ((this->i_/60000)*(temp_time));
+            return (this->output)+((this->i_/60000)*(temp_time));
         }
         else {
             // Output Negative Value
-            return (0-((this->i_/60000)*(temp_time)));
+            return (this->output)+(0-((this->i_/60000)*(temp_time)));
         }
         
     }
