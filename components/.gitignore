@@ -1,2 +1,7 @@
-\Tests
+# Folders
+Tests/
+__pycache__/
+
+# File Exentsions
 *.yaml
+*.pyc

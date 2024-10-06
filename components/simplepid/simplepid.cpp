@@ -43,10 +43,20 @@ void SimplePID::dump_config() {
     }
 }
 
+bool SimplePID::in_deadband() {
+    return (!std::isnan(this->db_)) || ( ( this->control_variable>(this->setpoint_variable-this->db_) ) && ( this->control_variable<(this->setpoint_variable+this->db_) ) );
+}
+
 void SimplePID::error_calc() {
     if(this->control_sensor != nullptr){ // Add enable check here
+        
+        if (in_deadband()) {
+            // Check for inside Deadband
+            // If inside Deadband Then return zero
+            this->error_value = 0.0;
 
-        if (this->direction_action)
+        }
+        else if (this->direction_action)
         {
             // Direct Acting
             // As the Error Increases, the Output Increases
@@ -65,9 +75,16 @@ void SimplePID::error_calc() {
 void SimplePID::compute_output() {
     if(this->control_sensor != nullptr) { // Add enable check here
         float p_var = compute_propotional();
-        float i_var = compute_integral(); 
-        float temp_out = p_var+(this->output+i_var);
+        float i_var = compute_integral();
         
+        // Check if a bias is being used
+        if (!std::isnan(this->bias_)) {
+            float temp_out = p_var+this->bias_+(this->output+i_var);
+        }
+        else {
+            float temp_out = p_var+(this->output+i_var);
+        }
+
         // Add enable If statement here to return 0.0
         if (0 < temp_out && temp_out < 100) {
             this->output = temp_out;
@@ -99,7 +116,10 @@ float SimplePID::compute_propotional() {
 float SimplePID:: compute_integral() { // Need to setup rate calculation by frist creating the time function
     float temp_time = this->set_time_between_states();
     
-    if (this->direction_action)
+    if (std::isnan(this->i_)) {
+        return 0.0;
+    }
+     else if (this->direction_action)
     {
         // Direct Acting
         // As the Error Increases, the Output Increases

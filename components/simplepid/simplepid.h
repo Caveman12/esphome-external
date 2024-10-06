@@ -70,10 +70,15 @@ class SimplePID : public Component  {
   float d_ = NaN;
 
   float bias_ = NaN;
+  
   float db_ = NaN;
+  bool in_deadband();
+  
   float setpoint_variable = 0.0;
   float control_variable = 0.0;
   
+
+
   /* {direction_action} Direction Action of the PID Loop
    * True = Direct Acting
    * False = Reverse Acting
@@ -92,6 +97,7 @@ class SimplePID : public Component  {
   sensor::Sensor *control_sensor{nullptr};
   
   //Enable Goes here { Enable sets the output to zero}
+  bool enable = false;
   
 };
 

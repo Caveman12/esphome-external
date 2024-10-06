@@ -35,11 +35,17 @@ async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
 
-    cg.add(var.set_p(config[CONF_P]))
-    cg.add(var.set_i(config[CONF_I]))
-    cg.add(var.set_bias(config[CONF_BIAS]))
-    cg.add(var.set_setpoint_variable(config[CONF_SETPOINT]))
-    cg.add(var.set_direction(config[CONF_DIRECTION]))
-
     sens = await cg.get_variable(config[CONF_CONTROL_VARIABLE])
     cg.add(var.set_control_sensor(sens))
+
+    cg.add(var.set_setpoint_variable(config[CONF_SETPOINT]))
+    cg.add(var.set_p(config[CONF_P]))
+    
+    if CONF_I in config:
+        cg.add(var.set_i(config[CONF_I]))
+    
+    if CONF_BIAS in config:
+        cg.add(var.set_bias(config[CONF_BIAS]))
+
+    if CONF_DIRECTION in config:
+        cg.add(var.set_direction(config[CONF_DIRECTION]))
