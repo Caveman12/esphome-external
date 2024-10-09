@@ -13,6 +13,14 @@ void SimplePID::setup() {
         this->compute_output();
         this->publish_state();
     });
+    this->enable_sensor->add_on_state_callback( [this](float state) {
+        this->enable = state;
+        if (this->enable) {
+            this->error_calc();
+        }
+        this->compute_output();
+        this->publish_state();
+    });
 
     ESP_LOGD(TAG, "Simple PID Setup");
 }
@@ -73,7 +81,7 @@ void SimplePID::error_calc() {
 }
 
 void SimplePID::compute_output() {
-    if(this->control_sensor != nullptr) { // Add enable check here
+    if( (this->control_sensor != nullptr) && (this->enable) ) {
         float p_var = compute_propotional();
         float i_var = compute_integral();
         float temp_out = 0.0;
@@ -106,8 +114,15 @@ void SimplePID::compute_output() {
 // Need to work on this.
 void SimplePID::publish_state() {
     ESP_LOGD(TAG, "Simple PID - State:");
-    ESP_LOGD(TAG, "  Error: %.1f", this->error_value);
     ESP_LOGD(TAG, "  Output: %.1f", this->output);
+    if (this->enable) {
+        ESP_LOGD(TAG, "  Enable: True");
+        ESP_LOGD(TAG, "  Error: %.1f", this->error_value);
+    }
+    else {
+        ESP_LOGD(TAG, "  Enable: False");
+    }
+    
 }
 
 float SimplePID::compute_propotional() { 

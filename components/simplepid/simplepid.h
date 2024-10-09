@@ -3,6 +3,7 @@
 #include "esphome/core/component.h"
 #include "esphome/components/sensor/sensor.h"
 #include "esphome/core/hal.h"
+#include "esphome/components/binary_sensor/binary_sensor.h"
 
 #include <cmath>
 
@@ -23,19 +24,22 @@ class SimplePID : public Component  {
   void error_calc();
 
   // Set Parameters Functions
-  void set_p(float proportional) {this->p_=proportional;}
-  void set_i(float integral) {this->i_=integral;}
+  void set_p(float proportional) {this->p_ = proportional;}
+  void set_i(float integral) {this->i_ = integral;}
   void set_d(float derviative) {(*this).d_= derviative;}
   void set_bias(float bias) {(*this).bias_ = bias;}
   void set_deadband(float deadband) { this->db_ = deadband;}
-  void set_control_sensor(sensor::Sensor *sensor) { this->control_sensor=sensor;}
+  void set_control_sensor(sensor::Sensor *sensor) { this->control_sensor = sensor;}
   void set_setpoint_variable(float setpoint) {this->setpoint_variable = setpoint;}
   void set_direction(bool direction) {this->direction_action = direction;}
+  void set_enable_sensor(binary_sensor:: BinarySensor *binarysensor) { this->enable_sensor = binarysensor; }
 
   // set Calculated Parameters
   float set_time_between_states();
 
   void publish_state();
+
+  
 
   // Calculated values
   void compute_output(); // Calcute output from 0-100%
@@ -77,8 +81,6 @@ class SimplePID : public Component  {
   float setpoint_variable = 0.0;
   float control_variable = 0.0;
   
-
-
   /* {direction_action} Direction Action of the PID Loop
    * True = Direct Acting
    * False = Reverse Acting
@@ -95,6 +97,7 @@ class SimplePID : public Component  {
 
   //Sensor Values
   sensor::Sensor *control_sensor{nullptr};
+  binary_sensor::BinarySensor *enable_sensor{nullptr};
   
   //Enable Goes here { Enable sets the output to zero}
   bool enable = false;
