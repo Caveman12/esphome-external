@@ -52,7 +52,23 @@ void SimplePID::dump_config() {
 }
 
 bool SimplePID::in_deadband() {
-    return (!std::isnan(this->db_)) || ( ( this->control_variable>(this->setpoint_variable-this->db_) ) && ( this->control_variable<(this->setpoint_variable+this->db_) ) );
+    return ( ( this->control_variable>this->get_setpoint_deadband_high() ) && ( this->control_variable<this->get_setpoint_deadband_low() ) );
+}
+
+void SimplePID::set_setpoint_deadband_high() {
+    if (std::isnan(this->db_)) {
+        this->setpoint_deadband_high = NAN;
+    } else {
+        this->setpoint_deadband_high = this->setpoint_variable+this->db_;
+    }
+}
+
+void SimplePID::set_setpoint_deadband_low() {
+    if (std::isnan(this->db_)) {
+        this->setpoint_deadband_low = NAN;
+    } else {
+        this->setpoint_deadband_low = this->setpoint_variable-this->db_;
+    }
 }
 
 void SimplePID::error_calc() {
@@ -68,13 +84,22 @@ void SimplePID::error_calc() {
         {
             // Direct Acting
             // As the Error Increases, the Output Increases
-            this->error_value=this->setpoint_variable - this->control_variable;
-        
+            // set error to correct value either above or below the deadband
+            if (this->get_setpoint_deadband_high()<this->control_variable) {
+                this->error_value = this->get_setpoint_deadband_high() - this->control_variable;
+            } else {
+                this->error_value = this->get_setpoint_deadband_low() - this->control_variable;
+            }
         }
         else {
             // Reverse Acting
             // As the Error Increases, the Output Decreases
-            this->error_value=this->control_variable - this->setpoint_variable;
+            // set error to correct value either above or below the deadband
+            if (this->get_setpoint_deadband_high()<this->control_variable) {
+                this->error_value = this->control_variable - this->get_setpoint_deadband_high();
+            } else {
+                this->error_value = this->control_variable - this->get_setpoint_deadband_low();
+            }
 
         }   
     }

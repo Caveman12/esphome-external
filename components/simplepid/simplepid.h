@@ -14,44 +14,45 @@ class SimplePID : public Component  {
 
  public:
 
-  // Base Functions. From ESPHome templates
+  /* Base ESPHome Function Overrides */
   void setup() override;
   void loop() override;
   void dump_config() override;
   float get_setup_priority() const override { return setup_priority::LATE; }
 
-  // Calculation Functions
-  void error_calc();
-
-  // Set Parameters Functions
+  /* Set Functions */
   void set_p(float proportional) {this->p_ = proportional;}
   void set_i(float integral) {this->i_ = integral;}
   void set_d(float derviative) {(*this).d_= derviative;}
   void set_bias(float bias) {(*this).bias_ = bias;}
   void set_deadband(float deadband) { this->db_ = deadband;}
   void set_control_sensor(sensor::Sensor *sensor) { this->control_sensor = sensor;}
-  void set_setpoint_variable(float setpoint) {this->setpoint_variable = setpoint;}
   void set_direction(bool direction) {this->direction_action = direction;}
   void set_enable_sensor(binary_sensor:: BinarySensor *binarysensor) { this->enable_sensor = binarysensor; }
 
-  // set Calculated Parameters
+  // Setpoint Calculations
+  void set_setpoint_variable(float setpoint) {this->setpoint_variable = setpoint;}
+  void set_setpoint_deadband_high();
+  void set_setpoint_deadband_low();
+
+  /* Calculation Functions */
+  void error_calc();
   float set_time_between_states();
-
   void publish_state();
-
-  
-
-  // Calculated values
   void compute_output(); // Calcute output from 0-100%
   float compute_propotional(); // Calculate P protion of output
   float compute_integral(); // Calculate I protion of output
 
-  // Get Parameters Functions
+  /* Get Functions */
   float get_p() {return this->p_;}
   float get_i() {return this->i_;}
   float get_db() {return this->db_;}
   float get_bias() {return this->bias_;}
-  float get_setpoint_variable() {return this->setpoint_variable;}
+
+  /* Get Setpoints */
+  float get_setpoint_variable() { return this->setpoint_variable; }
+  float get_setpoint_deadband_high() { return this->setpoint_deadband_high; }
+  float get_setpoint_deadband_low() { return this->setpoint_deadband_low; }
 
  private:
   // Input variables
@@ -76,9 +77,15 @@ class SimplePID : public Component  {
   float bias_ = NAN;
   
   float db_ = NAN;
+
   bool in_deadband();
 
+  /* Setpoint Values: */
   float setpoint_variable = 0.0;
+  float setpoint_deadband_high = 0.0;
+  float setpoint_deadband_low = 0.0;
+
+  /* Control Variables */
   float control_variable = 0.0;
   
   /* {direction_action} Direction Action of the PID Loop
