@@ -130,7 +130,10 @@ void SimplePID::compute_output() {
             this->output = 0.0;
         }
     }
-    else {
+    else if ( (this->control_sensor != nullptr) && (this->enable) ) {
+        this->output=0.0;
+        ESP_LOGV(TAG, "SimplePID Disabled");
+    } else {
         this->output=0.0;
         ESP_LOGV(TAG, "Control Sensor is Null Pointer");
     }
