@@ -56,3 +56,5 @@ async def to_code(config):
     if CONF_ENABLE in config:
         enab = await cg.get_variable(config[CONF_ENABLE])
         cg.add(var.set_enable_sensor(enab))
+    else:
+        cg.add(var.set_enable_sensor("nullptr"))

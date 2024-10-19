@@ -28,7 +28,7 @@ class SimplePID : public Component  {
   void set_deadband(float deadband) { this->db_ = deadband;}
   void set_control_sensor(sensor::Sensor *sensor) { this->control_sensor = sensor;}
   void set_direction(bool direction) {this->direction_action = direction;}
-  void set_enable_sensor(binary_sensor:: BinarySensor *binarysensor) { this->enable_sensor = binarysensor; }
+  void set_enable_sensor(binary_sensor:: BinarySensor *binarysensor);
 
   // Setpoint Calculations
   void set_setpoint_variable(float setpoint) {this->setpoint_variable = setpoint;}

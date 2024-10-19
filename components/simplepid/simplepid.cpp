@@ -13,14 +13,17 @@ void SimplePID::setup() {
         this->compute_output();
         this->publish_state();
     });
-    this->enable_sensor->add_on_state_callback( [this](float state) {
-        this->enable = state;
-        if (this->enable) {
-            this->error_calc();
-        }
-        this->compute_output();
-        this->publish_state();
-    });
+    if (this->enable_sensor!=nullptr) {
+        this->enable_sensor->add_on_state_callback( [this](float state) {
+            this->enable = state;
+            if (this->enable) {
+                this->error_calc();
+            }
+            this->compute_output();
+            this->publish_state();
+        });
+    }
+    
 
     ESP_LOGD(TAG, "Simple PID Setup");
 }
@@ -68,6 +71,15 @@ void SimplePID::set_setpoint_deadband_low() {
         this->setpoint_deadband_low = NAN;
     } else {
         this->setpoint_deadband_low = this->setpoint_variable-this->db_;
+    }
+}
+
+void SimplePID::set_enable_sensor(binary_sensor:: BinarySensor *binarysensor) {
+    if ( binarysensor != nullptr ) {
+        this->enable_sensor = binarysensor;
+    } else {
+        this->enable_sensor = nullptr;
+        this->enable = true;
     }
 }
 
