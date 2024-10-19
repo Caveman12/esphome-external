@@ -8,6 +8,7 @@ from esphome.const import (
 simplepid_ns = cg.esphome_ns.namespace("simplepid")
 SimplePID = simplepid_ns.class_("SimplePID", cg.Component)
  
+CONF_ID = "id"
 CONF_P = "p"
 CONF_I = "i"
 CONF_BIAS = "bias"
