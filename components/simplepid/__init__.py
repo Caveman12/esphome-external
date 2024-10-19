@@ -21,7 +21,7 @@ CONF_ENABLE = "enable"
 
 CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(): cv.declare_id(SimplePID),
+        cv.GenerateID(CONF_ID): cv.declare_id(SimplePID),
         cv.Required(CONF_P): cv.float_,
         cv.Required(CONF_SETPOINT): cv.float_, # Could this be a sensor or does it need to be something else? Could we use a number?
         cv.Required(CONF_CONTROL_VARIABLE): cv.use_id(sensor.Sensor),
