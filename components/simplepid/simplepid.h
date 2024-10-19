@@ -107,7 +107,7 @@ class SimplePID : public Component  {
   binary_sensor::BinarySensor *enable_sensor{nullptr};
   
   //Enable Goes here { Enable sets the output to zero}
-  bool enable = false;
+  bool enable = true;
   
 };
 
