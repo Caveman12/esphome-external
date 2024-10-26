@@ -2,8 +2,13 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import sensor, output, binary_sensor
 from esphome.const import (
-    CONF_ID
+    CONF_ID,
+    CONF_NAME,
+    CONF_INTERNAL,
+    CONF_ICON,
+    CONF_ENTITY_CATEGORY
 )
+from esphome.cpp_helpers import setup_entity
 
 simplepid_ns = cg.esphome_ns.namespace("simplepid")
 SimplePID = simplepid_ns.class_("SimplePID", cg.Component)
@@ -35,6 +40,8 @@ CONFIG_SCHEMA = cv.Schema(
 
 
 async def to_code(config):
+    await setup_entity()
+
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
 
