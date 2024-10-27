@@ -1,10 +1,9 @@
-#include "esphome/core/log.h"
 #include "simplepid.h"
 
 namespace esphome {
 namespace simplepid {
 
-static const char *TAG = "simplepid";
+static const char *TAG = "simplepid.output";
 
 void SimplePID::setup() {
     this->control_sensor->add_on_state_callback( [this](float state) {
@@ -28,8 +27,8 @@ void SimplePID::setup() {
     ESP_LOGD(TAG, "Simple PID Setup");
 }
 
-void SimplePID::loop() {
-
+void SimplePID::write_state(float state) {
+    state = this->output;
 }
 
 void SimplePID::dump_config() {

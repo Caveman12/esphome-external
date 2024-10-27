@@ -4,19 +4,21 @@
 #include "esphome/components/sensor/sensor.h"
 #include "esphome/core/hal.h"
 #include "esphome/components/binary_sensor/binary_sensor.h"
+#include "esphome/components/output/float_output.h"
+#include "esphome/core/log.h"
 
 #include <cmath>
 
 namespace esphome {
 namespace simplepid {
 
-class SimplePID : public Component  {
+class SimplePID : public output::FloatOutput, public Component  {
 
  public:
 
   /* Base ESPHome Function Overrides */
   void setup() override;
-  void loop() override;
+  void write_state(float state) override;
   void dump_config() override;
   float get_setup_priority() const override { return setup_priority::LATE; }
 
