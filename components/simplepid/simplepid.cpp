@@ -212,5 +212,11 @@ float SimplePID::set_time_between_states() {
     return deltat / 1000.0f; // Shopuld return ms
 }
 
+/* 
+    Set Values For Output Here
+*/
+
+// void 
+
 }  // namespace simplepid
 }  // namespace esphome

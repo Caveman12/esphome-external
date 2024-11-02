@@ -19,6 +19,7 @@ CONF_SETPOINT = "setpoint_variable"
 CONF_CONTROL_VARIABLE = "control_variable"
 CONF_DIRECTION = "direction"
 CONF_ENABLE = "enable"
+CONF_OUTPUT = "output"
 
 # Add Enable Sensor or binary here.
 
